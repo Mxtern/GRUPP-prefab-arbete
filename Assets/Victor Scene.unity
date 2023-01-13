@@ -356,7 +356,7 @@ MonoBehaviour:
   OnFloor: 0
   AirDashCD: 0
   RunCD: 0
-  JumpForce: 340
+  JumpForce: 3400
 --- !u!1 &1307754485
 GameObject:
   m_ObjectHideFlags: 0
