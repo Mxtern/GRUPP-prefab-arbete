@@ -79,6 +79,12 @@ public class playermovement2 : MonoBehaviour
         {
             transform.position = respawnPoint;
         }
+        else if (collision.tag == "checkpoint")
+        {
+            respawnPoint = transform.position;
+ 
+        }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
