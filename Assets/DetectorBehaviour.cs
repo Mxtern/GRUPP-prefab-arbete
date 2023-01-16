@@ -16,11 +16,7 @@ public class DetectorBehaviour : MonoBehaviour
     {
 
     }
-    public void Hiding()
-    {
-        print("Hiding");
-        IsHiding = true;
-    }
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -28,6 +24,10 @@ public class DetectorBehaviour : MonoBehaviour
         {
             print("You Have Been Detected.");
             FindObjectOfType<PlayerMovement>().Detected();
+        }
+        else if (collision.gameObject.tag == "HidingPlayer")
+        {
+            print("Player is hiding");
         }
     }
 }
