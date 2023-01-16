@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public bool RunCD;
 
     [SerializeField]
-    public float JumpForce = 100;
+    public float JumpForce = 340;
 
     // Start is called before the first frame update
     void Start()
