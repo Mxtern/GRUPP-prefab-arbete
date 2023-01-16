@@ -18,16 +18,17 @@ public class DetectorBehaviour : MonoBehaviour
     }
     
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision) //Stay innebär att den kollar efter trigger varje frame. 
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "HidingPlayer")
+        {
+            print("Player is hiding");
+        }
+        else if (collision.gameObject.tag == "Player")
         {
             print("You Have Been Detected.");
             FindObjectOfType<PlayerMovement>().Detected();
         }
-        else if (collision.gameObject.tag == "HidingPlayer")
-        {
-            print("Player is hiding");
-        }
     }
+    
 }

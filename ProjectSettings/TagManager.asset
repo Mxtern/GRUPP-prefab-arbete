@@ -11,15 +11,10 @@ TagManager:
   - HidingPlace
   - Ladder
   - falldetector
-<<<<<<< HEAD
-  - checkpoint
-=======
   - HidingPlayer
-<<<<<<< HEAD
   - StopHiding
-=======
->>>>>>> aab2155a256b4eff85c494dd070800b78a78cb9d
->>>>>>> a2f9d850122ea0c70293f4d92a2140de0cc703c6
+  - EnemyOpening
+  - Railway
   layers:
   - Default
   - TransparentFX

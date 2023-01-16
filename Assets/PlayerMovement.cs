@@ -16,7 +16,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject EntranceCam;
     public GameObject BossCam;
     public GameObject Boss;
-
+    public GameObject BossOpening;
+    public GameObject TargetManager;
     [SerializeField]
     public float JumpForce = 340.0f;
 
@@ -37,7 +38,10 @@ public class PlayerMovement : MonoBehaviour
         EntranceCam.SetActive(false);
         BossCam.SetActive(false);
         Boss.SetActive(false);
+        BossOpening.SetActive(false);
+        TargetManager.SetActive(false);
         gameObject.tag = "Player";
+        
     }
 
     // Update is called once per frame
@@ -156,7 +160,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void Detected()
     {
-        /*Destroy(this.gameObject);*/
+        FindObjectOfType<BossBehaviour>().TargetPlayer();
+
         
     }
 
