@@ -5,7 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Floor
+  - Harvester
+  - CamSwitcher1
+  - CamSwitcher2
+  - HidingPlace
   - Ladder
+  - falldetector
   layers:
   - Default
   - TransparentFX
