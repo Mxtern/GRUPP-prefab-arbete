@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
         PlayerCamera.SetActive(true);
         EntranceCam.SetActive(false);
         BossCam.SetActive(false);
-        Boss.SetActive(false);
+        Boss.SetActive(true);
     }
 
     // Update is called once per frame
@@ -124,26 +124,25 @@ public class PlayerMovement : MonoBehaviour
             RunCD = false;
         }
 
-        /*if (collision.gameObject.tag == "CamSwticher1")
-        {
-            print("Switch");
-            PlayerCamera.SetActive(false);
-            EntranceCam.SetActive(true);
-            BossCam.SetActive(false);
-        }
-        if (collision.gameObject.tag == "CamSwticher2")
-        {
-            print("Switch2");
-            PlayerCamera.SetActive(false);
-            EntranceCam.SetActive(false);
-            BossCam.SetActive(true);
-        }*/
+        
 
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "HidingPlace")
+        {
+            FindObjectOfType<DetectorBehaviour>().Hiding();
+        }
+        else 
+        {
+            print("Not Hiding");
+        }
     }
 
     public void Detected()
     {
-        Destroy(this.gameObject);
+        /*Destroy(this.gameObject);*/
+        
     }
 
 }

@@ -8,6 +8,7 @@ TagManager:
   - Harvester
   - CamSwitcher1
   - CamSwitcher2
+  - HidingPlace
   layers:
   - Default
   - TransparentFX
