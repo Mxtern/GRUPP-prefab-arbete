@@ -12,6 +12,7 @@ TagManager:
   - Ladder
   - falldetector
   - HidingPlayer
+  - StopHiding
   layers:
   - Default
   - TransparentFX

@@ -36,7 +36,8 @@ public class PlayerMovement : MonoBehaviour
         PlayerCamera.SetActive(true);
         EntranceCam.SetActive(false);
         BossCam.SetActive(false);
-        Boss.SetActive(true);
+        Boss.SetActive(false);
+        gameObject.tag = "Player";
     }
 
     // Update is called once per frame
@@ -122,6 +123,7 @@ public class PlayerMovement : MonoBehaviour
                 Sliding = false;
             }
         } */
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -142,6 +144,12 @@ public class PlayerMovement : MonoBehaviour
         {
             gameObject.tag = "HidingPlayer";
         }
+        if (collision.gameObject.tag == "StopHiding")
+        {
+            gameObject.tag = "Player";
+        }
+        
+        
 
 
     }
