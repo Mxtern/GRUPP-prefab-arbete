@@ -18,7 +18,16 @@ public class PlayerMovement : MonoBehaviour
     public GameObject Boss;
 
     [SerializeField]
-    public float JumpForce = 340;
+    public float JumpForce = 340.0f;
+
+    [SerializeField]
+    public float LeftWalkSpeed = -3.0f;
+
+    [SerializeField]
+    public float RightWalkSpeed = 3.0f;
+
+    [SerializeField]
+    public float DashSpeed = 300.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -44,11 +53,11 @@ public class PlayerMovement : MonoBehaviour
         {
             print("Running Right");
             
-            Rb2.AddForce(new Vector3(3, 0, 0));
+            Rb2.AddForce(new Vector3(RightWalkSpeed, 0, 0));
         }
         else if (Input.GetKey(KeyCode.D) && Rb2.velocity.x < 3)
         {
-            Rb2.AddForce(new Vector3(3, 0, 0));
+            Rb2.AddForce(new Vector3(RightWalkSpeed, 0, 0));
             
         }
 
@@ -56,23 +65,23 @@ public class PlayerMovement : MonoBehaviour
         {
             print("Running Left");
             
-            Rb2.AddForce(new Vector3(-3, 0, 0));
+            Rb2.AddForce(new Vector3(LeftWalkSpeed, 0, 0));
         }
         else if (Input.GetKey(KeyCode.A) && Rb2.velocity.x > -3)
         {
-            Rb2.AddForce(new Vector3(-3, 0, 0));
+            Rb2.AddForce(new Vector3(LeftWalkSpeed, 0, 0));
             
         }
 
         if (OnFloor == false && Input.GetKeyDown(KeyCode.Space) && AirDashCD == false&& AirDashCD == false && Input.GetKey(KeyCode.D))
         {
-            Rb2.AddForce(new Vector3(300, 0, 0));
+            Rb2.AddForce(new Vector3(DashSpeed, 0, 0));
             AirDashCD = true;
             RunCD = true;
         }
         if (OnFloor == false && Input.GetKeyDown(KeyCode.Space) && AirDashCD == false && AirDashCD == false && Input.GetKey(KeyCode.A))
         {
-            Rb2.AddForce(new Vector3(-300, 0, 0));
+            Rb2.AddForce(new Vector3(-DashSpeed, 0, 0));
             AirDashCD = true;
             RunCD = true;
         }
@@ -131,12 +140,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "HidingPlace")
         {
-            FindObjectOfType<DetectorBehaviour>().Hiding();
+            gameObject.tag = "HidingPlayer";
         }
-        else 
-        {
-            print("Not Hiding");
-        }
+
+
     }
 
     public void Detected()
