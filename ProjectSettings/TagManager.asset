@@ -9,6 +9,8 @@ TagManager:
   - CamSwitcher1
   - CamSwitcher2
   - HidingPlace
+  - Ladder
+  - falldetector
   layers:
   - Default
   - TransparentFX
