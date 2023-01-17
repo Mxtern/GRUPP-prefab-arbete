@@ -23,8 +23,5 @@ public class BossBehaviour : MonoBehaviour
         transform.right = FollowStones.position - transform.position;
     }
     
-    public void TargetPlayer()
-    {
-        FollowStones = FollowPlayer;
-    }
+    
 }

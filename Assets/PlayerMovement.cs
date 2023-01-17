@@ -160,8 +160,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void Detected()
     {
-        FindObjectOfType<BossBehaviour>().TargetPlayer();
-
+        FindObjectOfType<TargetMove>().DisableTargetPicking();
+        FindObjectOfType<TargetStone>().SwitchTargets();
         
     }
 

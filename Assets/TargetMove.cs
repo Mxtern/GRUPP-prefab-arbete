@@ -11,10 +11,12 @@ public class TargetMove : MonoBehaviour
     public Transform TargetStone2 = null;
     public Transform TargetStone3 = null;
     public Transform TargetStone4 = null;
+    public Transform PlayerTarget = null;
 
     public int RandomStone;
     public int PreviousStone;
 
+    public bool Targeting = (true);
 
     // Start is called before the first frame update
     void Start()
@@ -27,11 +29,16 @@ public class TargetMove : MonoBehaviour
     void Update()
     {
         TimeLeft -= (1 * Time.deltaTime);
-        if (TimeLeft <= 0.0f)
+        if (TimeLeft <= 0.0f && Targeting == true)
         {
             PickTarget();
             TimeLeft += TimeUntilSwitch;
         }
+    }
+    public void DisableTargetPicking()
+    {
+        Targeting = false;
+
     }
     public void PickTarget()
     {
