@@ -3,19 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Floor
-  - Harvester
-  - CamSwitcher1
-  - CamSwitcher2
-  - HidingPlace
-  - Ladder
-  - falldetector
-<<<<<<< HEAD
-  - checkpoint
-=======
-  - HidingPlayer
->>>>>>> aab2155a256b4eff85c494dd070800b78a78cb9d
+  tags: []
   layers:
   - Default
   - TransparentFX
