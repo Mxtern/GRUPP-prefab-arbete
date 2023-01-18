@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerMovement : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -13,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public bool Sliding;
     public bool FearState;
     public bool HasRock;
+    
 
     public GameObject PlayerCamera;
     public GameObject EntranceCam;
@@ -20,14 +22,17 @@ public class PlayerMovement : MonoBehaviour
     public GameObject Boss;
     public GameObject BossOpening;
     public GameObject TargetManager;
+    
+
+    public Animator PlayerAniamtion;
     [SerializeField]
     public float JumpForce = 340.0f;
 
     [SerializeField]
-    public float LeftWalkSpeed = -3.0f;
+    public float LeftWalkSpeed = -6.0f;
 
     [SerializeField]
-    public float RightWalkSpeed = 3.0f;
+    public float RightWalkSpeed = 6.0f;
 
     [SerializeField]
     public float DashSpeed = 300.0f;
@@ -36,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         Rb2 = GetComponent<Rigidbody2D>();
+        
         PlayerCamera.SetActive(true);
         EntranceCam.SetActive(false);
         BossCam.SetActive(false);
@@ -47,8 +53,33 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        
+        if (Rb2.velocity.x > 0)
+        {
+            PlayerAniamtion.SetBool("IsWalking", true);
+
+        }
+        else if (Rb2.velocity.x == 0)
+        {
+            PlayerAniamtion.SetBool("IsWalking", false);
+        }
+
+        if (Rb2.velocity.x < 0)
+        {
+            PlayerAniamtion.SetBool("IsWalking", true);
+
+        }
+        else if (Rb2.velocity.x == 0)
+        {
+            PlayerAniamtion.SetBool("IsWalking", false);
+        }
+
+
+
+
+
         if (Input.GetKeyDown(KeyCode.W) && OnFloor == true &&FearState == false)
         {
             print("Jump");
@@ -56,27 +87,46 @@ public class PlayerMovement : MonoBehaviour
             OnFloor = false;
         }
 
-        if (Input.GetKey(KeyCode.D) && (Input.GetKey(KeyCode.LeftShift) && Rb2.velocity.x < 6) && RunCD == false && FearState == false)
+        if (Input.GetKey(KeyCode.D) && (Input.GetKey(KeyCode.LeftShift)) && RunCD == false && FearState == false)
         {
             print("Running Right");
             
             Rb2.AddForce(new Vector3(RightWalkSpeed, 0, 0));
+            if (Rb2.velocity.x > 3.0f)
+            {
+                Rb2.velocity = new Vector2(3.0f, Rb2.velocity.y);
+            }
         }
-        else if (Input.GetKey(KeyCode.D) && Rb2.velocity.x < 3)
+        else if (Input.GetKey(KeyCode.D))
         {
-            Rb2.AddForce(new Vector3(RightWalkSpeed, 0, 0));
             
+            Rb2.AddForce(new Vector3(RightWalkSpeed, 0, 0));
+            if (Rb2.velocity.x > 1.5f)
+            {
+                Rb2.velocity = new Vector2(1.5f, Rb2.velocity.y);
+            }
+
         }
 
-        if (Input.GetKey(KeyCode.A) && (Input.GetKey(KeyCode.LeftShift) && Rb2.velocity.x > -6)&&RunCD == false && FearState == false)
+
+        if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.LeftShift) && RunCD == false && FearState == false)
         {
             print("Running Left");
-            
+          /*FindObjectOfType<RotateSurvivor>().Rotate180();*/
             Rb2.AddForce(new Vector3(LeftWalkSpeed, 0, 0));
+            if (Rb2.velocity.x < -3.0f)
+            {
+                Rb2.velocity = new Vector2(-3.0f, Rb2.velocity.y);
+            }
         }
-        else if (Input.GetKey(KeyCode.A) && Rb2.velocity.x > -3)
+        else if (Input.GetKey(KeyCode.A))
         {
+          /*FindObjectOfType<RotateSurvivor>().Rotate180();*/
             Rb2.AddForce(new Vector3(LeftWalkSpeed, 0, 0));
+            if (Rb2.velocity.x < -1.5f)
+            {
+                Rb2.velocity = new Vector2(-1.5f, Rb2.velocity.y);
+            }
             
         }
 

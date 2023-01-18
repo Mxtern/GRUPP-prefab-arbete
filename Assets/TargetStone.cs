@@ -32,7 +32,7 @@ public class TargetStone : MonoBehaviour
             Vector3 b = TargetTarget.position;
             transform.position = Vector3.MoveTowards(a, Vector3.Lerp(a, b, T), Speed);
         }
-        if (TargetingDistraction == true)
+        else if (TargetingDistraction == true)
         {
             Vector3 c = transform.position;
             Vector3 d = TargetDistraction.position;
@@ -52,8 +52,9 @@ public class TargetStone : MonoBehaviour
         TargetingTarget = false;
         TargetingPlayer = true;
     }
-    public void HarvesterDistracted()
+    public void HarvesterDistracted(Transform rock)
     {
+        TargetDistraction = rock;
         TargetingTarget = false;
         TargetingDistraction = true;
     }

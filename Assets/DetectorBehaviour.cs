@@ -37,7 +37,7 @@ public class DetectorBehaviour : MonoBehaviour
         {
             print("Distracted");
             FindObjectOfType<TargetMove>().Distracted();
-            FindObjectOfType<TargetStone>().HarvesterDistracted();
+            FindObjectOfType<TargetStone>().HarvesterDistracted(collision.transform);
         }
     }
 
