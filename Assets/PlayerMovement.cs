@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     public bool AirDashCD;
     public bool RunCD;
     public bool Sliding;
+    public bool FearState;
+    public bool HasRock;
 
     public GameObject PlayerCamera;
     public GameObject EntranceCam;
@@ -47,14 +49,14 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) && OnFloor == true)
+        if (Input.GetKeyDown(KeyCode.W) && OnFloor == true &&FearState == false)
         {
             print("Jump");
             Rb2.AddForce(new Vector3(0, JumpForce, 0));
             OnFloor = false;
         }
 
-        if (Input.GetKey(KeyCode.D) && (Input.GetKey(KeyCode.LeftShift) && Rb2.velocity.x < 6) && RunCD == false)
+        if (Input.GetKey(KeyCode.D) && (Input.GetKey(KeyCode.LeftShift) && Rb2.velocity.x < 6) && RunCD == false && FearState == false)
         {
             print("Running Right");
             
@@ -66,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
             
         }
 
-        if (Input.GetKey(KeyCode.A) && (Input.GetKey(KeyCode.LeftShift) && Rb2.velocity.x > -6)&&RunCD == false)
+        if (Input.GetKey(KeyCode.A) && (Input.GetKey(KeyCode.LeftShift) && Rb2.velocity.x > -6)&&RunCD == false && FearState == false)
         {
             print("Running Left");
             
@@ -91,6 +93,12 @@ public class PlayerMovement : MonoBehaviour
             RunCD = true;
         }
 
+        if (HasRock == true)
+        {
+            FindObjectOfType<ShootBehaviour>().ThrowRock();
+            
+
+        }
 
         /*if (OnFloor == true && Input.GetKey(KeyCode.C) && Rb2.velocity.x < -5)
         {
@@ -127,7 +135,7 @@ public class PlayerMovement : MonoBehaviour
                 Sliding = false;
             }
         } */
-        
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -157,11 +165,21 @@ public class PlayerMovement : MonoBehaviour
 
 
     }
+    public void Rock()
+    {
+        HasRock = true;
+    }
+    public void Fear()
+    {
+        FearState = true;
+    }
 
     public void Detected()
     {
         FindObjectOfType<TargetMove>().DisableTargetPicking();
         FindObjectOfType<TargetStone>().SwitchTargets();
+        Destroy(this.gameObject, 3.0f);
+
         
     }
 

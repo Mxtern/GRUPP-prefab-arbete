@@ -18,7 +18,7 @@ public class DetectorBehaviour : MonoBehaviour
     }
     
 
-    private void OnTriggerStay2D(Collider2D collision) //Stay innebär att den kollar efter trigger varje frame. 
+    public void OnTriggerStay2D(Collider2D collision) //Stay innebär att den kollar efter trigger varje frame. 
     {
         if (collision.gameObject.tag == "HidingPlayer")
         {
@@ -29,6 +29,16 @@ public class DetectorBehaviour : MonoBehaviour
             print("You Have Been Detected.");
             FindObjectOfType<PlayerMovement>().Detected();
         }
+        
     }
-    
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "StonePrefab")
+        {
+            print("Distracted");
+            FindObjectOfType<TargetMove>().Distracted();
+            FindObjectOfType<TargetStone>().HarvesterDistracted();
+        }
+    }
+
 }

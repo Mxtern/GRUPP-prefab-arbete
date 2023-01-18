@@ -15,6 +15,7 @@ TagManager:
   - StopHiding
   - EnemyOpening
   - Railway
+  - StonePrefab
   layers:
   - Default
   - TransparentFX

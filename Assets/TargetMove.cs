@@ -5,7 +5,7 @@ using UnityEngine;
 public class TargetMove : MonoBehaviour
 {
     [SerializeField]
-    public float TimeUntilSwitch = 5.0f;
+    public float TimeUntilSwitch = 4.2f;
     public float TimeLeft;
     public Transform TargetStone1 = null;
     public Transform TargetStone2 = null;
@@ -17,6 +17,7 @@ public class TargetMove : MonoBehaviour
     public int PreviousStone;
 
     public bool Targeting = (true);
+    public bool DistractionActive = (false);
 
     // Start is called before the first frame update
     void Start()
@@ -34,10 +35,24 @@ public class TargetMove : MonoBehaviour
             PickTarget();
             TimeLeft += TimeUntilSwitch;
         }
+        else if (TimeLeft <= 0.0f && DistractionActive == true) 
+        {
+            FindObjectOfType<TargetStone>().StoneToTarget();
+            DistractionActive = false;
+            Targeting = true;
+
+        }
     }
     public void DisableTargetPicking()
     {
         Targeting = false;
+        
+    }
+    public void Distracted()
+    {
+        Targeting = false;
+        DistractionActive = true;
+        TimeLeft = 4.2f;
 
     }
     public void PickTarget()

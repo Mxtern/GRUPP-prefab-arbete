@@ -24,7 +24,7 @@ public class Camera1Behaviour : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             print("Enter");
-            PlayerCam.SetActive(false);
+            PlayerCam.SetActive(false); 
             EntranceCam.SetActive(true);
         }
         

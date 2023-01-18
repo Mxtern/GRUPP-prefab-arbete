@@ -27,6 +27,7 @@ public class BossStart : MonoBehaviour
             print("You are filled with FEAR.");
             BossOpening.SetActive(true);
             FindObjectOfType<EnemyBehaviour>().WaitAndStart();
+            FindObjectOfType<PlayerMovement>().Fear();
             
         }
     }
