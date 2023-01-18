@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class playermovement2 : MonoBehaviour
 {
-    Rigidbody2D Rb2;
+    public Rigidbody2D Rb2;
 
     public bool OnFloor;
     public bool AirDashCD;
