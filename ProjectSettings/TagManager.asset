@@ -3,7 +3,23 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
+<<<<<<< HEAD
   tags: []
+=======
+  tags:
+  - Floor
+  - Harvester
+  - CamSwitcher1
+  - CamSwitcher2
+  - HidingPlace
+  - Ladder
+  - falldetector
+  - HidingPlayer
+  - StopHiding
+  - EnemyOpening
+  - Railway
+  - StonePrefab
+>>>>>>> 6f35e91ffc20f40d5adb26316999295834d7a6c3
   layers:
   - Default
   - TransparentFX

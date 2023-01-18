@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossStart : MonoBehaviour
 {
-    public GameObject Boss;
+    public GameObject BossOpening;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,14 +16,20 @@ public class BossStart : MonoBehaviour
     {
         
     }
+    public void DestroyIntro()
+    {
+        Destroy(this.gameObject);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            print("weewoo");
-            Boss.SetActive(true);
+            print("You are filled with FEAR.");
+            BossOpening.SetActive(true);
             FindObjectOfType<EnemyBehaviour>().WaitAndStart();
-            Destroy(this.gameObject);
+            FindObjectOfType<PlayerMovement>().Fear();
+            
         }
     }
+    
 }
