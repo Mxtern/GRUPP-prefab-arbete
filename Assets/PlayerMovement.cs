@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerMovement : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -11,72 +12,181 @@ public class PlayerMovement : MonoBehaviour
     public bool AirDashCD;
     public bool RunCD;
     public bool Sliding;
+    public bool FearState;
+    public bool HasRock;
+    public bool Moving;
+    
 
     public GameObject PlayerCamera;
     public GameObject EntranceCam;
     public GameObject BossCam;
     public GameObject Boss;
+    public GameObject BossOpening;
+    public GameObject TargetManager;
+    
+
+    public Animator PlayerAniamtion;
+    [SerializeField]
+    public float JumpForce = 340.0f;
 
     [SerializeField]
-    public float JumpForce = 340;
+    public float LeftWalkSpeed = -6.0f;
+
+    [SerializeField]
+    public float RightWalkSpeed = 6.0f;
+
+    [SerializeField]
+    public float DashSpeed = 300.0f;
 
     // Start is called before the first frame update
     void Start()
     {
         Rb2 = GetComponent<Rigidbody2D>();
+        
         PlayerCamera.SetActive(true);
         EntranceCam.SetActive(false);
         BossCam.SetActive(false);
-        Boss.SetActive(true);
+        Boss.SetActive(false);
+        BossOpening.SetActive(false);
+        TargetManager.SetActive(false);
+        Moving = false;
+        gameObject.tag = "Player";
+        
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.W) && OnFloor == true)
+        
+        if (Rb2.velocity.x > 0)
+        {
+            PlayerAniamtion.SetBool("IsWalking", true);
+
+        }
+        else if (Rb2.velocity.x == 0)
+        {
+            PlayerAniamtion.SetBool("IsWalking", false);
+        }
+
+        if (Rb2.velocity.x < 0)
+        {
+            PlayerAniamtion.SetBool("IsWalking", true);
+
+        }
+        else if (Rb2.velocity.x == 0)
+        {
+            PlayerAniamtion.SetBool("IsWalking", false);
+        }
+
+        if (Rb2.velocity.y == 0)
+        {
+            PlayerAniamtion.SetBool("IsJumping", false);
+            PlayerAniamtion.SetBool("IsFalling", false);
+        }
+        else if (Rb2.velocity.y > 0)
+        {
+            PlayerAniamtion.SetBool("IsJumping", true);
+            PlayerAniamtion.SetBool("IsFalling", false);
+        }
+        else if (Rb2.velocity.y < 0)
+        {
+            PlayerAniamtion.SetBool("IsJumping", false);
+            PlayerAniamtion.SetBool("IsFalling", true);
+        }
+
+
+
+
+        if (Input.GetKeyDown(KeyCode.W) && OnFloor == true &&FearState == false)
         {
             print("Jump");
             Rb2.AddForce(new Vector3(0, JumpForce, 0));
             OnFloor = false;
+            if (OnFloor == false)
+            {
+
+            }
         }
 
-        if (Input.GetKey(KeyCode.D) && (Input.GetKey(KeyCode.LeftShift) && Rb2.velocity.x < 6) && RunCD == false)
+        if (Input.GetKey(KeyCode.D) && (Input.GetKey(KeyCode.LeftShift)) && RunCD == false && FearState == false)
         {
             print("Running Right");
+            Moving = true;
             
-            Rb2.AddForce(new Vector3(3, 0, 0));
+            Rb2.AddForce(new Vector3(RightWalkSpeed, 0, 0));
+            if (Rb2.velocity.x > 3.0f)
+            {
+                Rb2.velocity = new Vector2(3.0f, Rb2.velocity.y);
+            }
         }
-        else if (Input.GetKey(KeyCode.D) && Rb2.velocity.x < 3)
+        else if (Input.GetKey(KeyCode.D))
         {
-            Rb2.AddForce(new Vector3(3, 0, 0));
-            
+            Moving = true;
+            Rb2.AddForce(new Vector3(RightWalkSpeed, 0, 0));
+            if (Rb2.velocity.x > 1.5f)
+            {
+                Rb2.velocity = new Vector2(1.5f, Rb2.velocity.y);
+            }
+
+        }
+        else 
+        {
+            Moving = false;
+        }
+        if (Moving == false)
+        {
+            Rb2.velocity = new Vector2(0.0f, Rb2.velocity.y);
         }
 
-        if (Input.GetKey(KeyCode.A) && (Input.GetKey(KeyCode.LeftShift) && Rb2.velocity.x > -6)&&RunCD == false)
+
+        if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.LeftShift) && RunCD == false && FearState == false)
         {
             print("Running Left");
-            
-            Rb2.AddForce(new Vector3(-3, 0, 0));
+            /*FindObjectOfType<RotateSurvivor>().Rotate180();*/
+            Moving = true;
+            Rb2.AddForce(new Vector3(LeftWalkSpeed, 0, 0));
+            if (Rb2.velocity.x < -3.0f)
+            {
+                Rb2.velocity = new Vector2(-3.0f, Rb2.velocity.y);
+            }
         }
-        else if (Input.GetKey(KeyCode.A) && Rb2.velocity.x > -3)
+        else if (Input.GetKey(KeyCode.A))
         {
-            Rb2.AddForce(new Vector3(-3, 0, 0));
-            
+            /*FindObjectOfType<RotateSurvivor>().Rotate180();*/
+            Moving = true;
+            Rb2.AddForce(new Vector3(LeftWalkSpeed, 0, 0));
+            if (Rb2.velocity.x < -1.5f)
+            {
+                Rb2.velocity = new Vector2(-1.5f, Rb2.velocity.y);
+            }
+
         }
+        else
+        {
+            Moving = false;
+        }
+
+
 
         if (OnFloor == false && Input.GetKeyDown(KeyCode.Space) && AirDashCD == false&& AirDashCD == false && Input.GetKey(KeyCode.D))
         {
-            Rb2.AddForce(new Vector3(300, 0, 0));
+            Rb2.AddForce(new Vector3(DashSpeed, 0, 0));
             AirDashCD = true;
             RunCD = true;
         }
         if (OnFloor == false && Input.GetKeyDown(KeyCode.Space) && AirDashCD == false && AirDashCD == false && Input.GetKey(KeyCode.A))
         {
-            Rb2.AddForce(new Vector3(-300, 0, 0));
+            Rb2.AddForce(new Vector3(-DashSpeed, 0, 0));
             AirDashCD = true;
             RunCD = true;
         }
 
+        if (HasRock == true)
+        {
+            FindObjectOfType<ShootBehaviour>().ThrowRock();
+            
+
+        }
 
         /*if (OnFloor == true && Input.GetKey(KeyCode.C) && Rb2.velocity.x < -5)
         {
@@ -113,6 +223,7 @@ public class PlayerMovement : MonoBehaviour
                 Sliding = false;
             }
         } */
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -131,17 +242,32 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "HidingPlace")
         {
-            FindObjectOfType<DetectorBehaviour>().Hiding();
+            gameObject.tag = "HidingPlayer";
         }
-        else 
+        if (collision.gameObject.tag == "StopHiding")
         {
-            print("Not Hiding");
+            gameObject.tag = "Player";
         }
+        
+        
+
+
+    }
+    public void Rock()
+    {
+        HasRock = true;
+    }
+    public void Fear()
+    {
+        FearState = true;
     }
 
     public void Detected()
     {
-        /*Destroy(this.gameObject);*/
+        FindObjectOfType<TargetMove>().DisableTargetPicking();
+        FindObjectOfType<TargetStone>().SwitchTargets();
+        Destroy(this.gameObject, 3.0f);
+
         
     }
 

@@ -4,13 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - StonePrefab
+  - HidingPlace
+  - StopHiding
+  - EnemyOpening
+  - CamSwitcher2
   - Floor
   - Harvester
   - CamSwitcher1
-  - CamSwitcher2
-  - HidingPlace
-  - Ladder
-  - falldetector
+  - HidingPlayer
   layers:
   - Default
   - TransparentFX
