@@ -1675,7 +1675,6 @@ SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD:Assets/world build.unity
   m_GameObject: {fileID: 769008814}
   m_Enabled: 1
   m_CastShadows: 0
@@ -2339,9 +2338,6 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1082986276}
-=======
-  m_GameObject: {fileID: 677425874}
->>>>>>> 9fb00c59d646f287204c536112e4e370d96845b8:Assets/World(no graphics).unity
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -5041,7 +5037,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
-<<<<<<< HEAD:Assets/world build.unity
 --- !u!1 &1503695267
 GameObject:
   m_ObjectHideFlags: 0
@@ -5166,8 +5161,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
-=======
->>>>>>> 9fb00c59d646f287204c536112e4e370d96845b8:Assets/World(no graphics).unity
 --- !u!1 &1524223794
 GameObject:
   m_ObjectHideFlags: 0
