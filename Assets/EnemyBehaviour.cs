@@ -9,7 +9,7 @@ public class EnemyBehaviour : MonoBehaviour
     public GameObject TargetManager;
 
     [SerializeField]
-    public float BossCutscene = 3.0f;
+    public float BossCutscene = 5.0f;
     public float TimeLeft;
     public bool BossCountdown = false;
 

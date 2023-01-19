@@ -8,16 +8,19 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     Rigidbody2D Rb2;
 
+    
     public bool OnFloor;
     public bool AirDashCD;
     public bool RunCD;
     public bool Sliding;
     public bool FearState;
     public bool HasRock;
-    public bool Moving;
+    public bool MovingRight;
+    public bool MovingLeft;
     
 
     public GameObject PlayerCamera;
+    public GameObject HouseCam;
     public GameObject EntranceCam;
     public GameObject BossCam;
     public GameObject Boss;
@@ -30,26 +33,36 @@ public class PlayerMovement : MonoBehaviour
     public float JumpForce = 340.0f;
 
     [SerializeField]
-    public float LeftWalkSpeed = -6.0f;
+    public float LeftWalkSpeed = -2.0f;
 
     [SerializeField]
-    public float RightWalkSpeed = 6.0f;
+    public float RightWalkSpeed = 2.0f;
+
+    [SerializeField]
+    public float LeftRunSpeed = -5.0f;
+
+    [SerializeField]
+    public float RightRunSpeed = 5.0f;
 
     [SerializeField]
     public float DashSpeed = 300.0f;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
-        Rb2 = GetComponent<Rigidbody2D>();
         
+        Rb2 = GetComponent<Rigidbody2D>();
+        HouseCam.SetActive(false); //change later
         PlayerCamera.SetActive(true);
         EntranceCam.SetActive(false);
         BossCam.SetActive(false);
         Boss.SetActive(false);
         BossOpening.SetActive(false);
         TargetManager.SetActive(false);
-        Moving = false;
+        MovingLeft = false;
+        MovingRight = false;
         gameObject.tag = "Player";
         
     }
@@ -58,24 +71,30 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         
+
         if (Rb2.velocity.x > 0)
         {
             PlayerAniamtion.SetBool("IsWalking", true);
-
+            FindObjectOfType<RotateSurvivor>().FlipPlayerRight();
+            
         }
         else if (Rb2.velocity.x == 0)
         {
             PlayerAniamtion.SetBool("IsWalking", false);
+            
+            
         }
 
         if (Rb2.velocity.x < 0)
         {
             PlayerAniamtion.SetBool("IsWalking", true);
+            FindObjectOfType<RotateSurvivor>().FlipPlayerLeft();
 
         }
         else if (Rb2.velocity.x == 0)
         {
             PlayerAniamtion.SetBool("IsWalking", false);
+            
         }
 
         if (Rb2.velocity.y == 0)
@@ -111,61 +130,56 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.D) && (Input.GetKey(KeyCode.LeftShift)) && RunCD == false && FearState == false)
         {
             print("Running Right");
-            Moving = true;
+            MovingRight = true;
             
-            Rb2.AddForce(new Vector3(RightWalkSpeed, 0, 0));
-            if (Rb2.velocity.x > 3.0f)
+            Rb2.AddForce(new Vector2(100.0f, Rb2.velocity.y));
+            if (Rb2.velocity.x > RightRunSpeed)
             {
-                Rb2.velocity = new Vector2(3.0f, Rb2.velocity.y);
+                Rb2.velocity = new Vector2(RightRunSpeed, Rb2.velocity.y);
             }
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            Moving = true;
-            Rb2.AddForce(new Vector3(RightWalkSpeed, 0, 0));
-            if (Rb2.velocity.x > 1.5f)
+            MovingRight = true;
+            Rb2.AddForce(new Vector2(100.0f, Rb2.velocity.y));
+            if (Rb2.velocity.x > RightWalkSpeed)
             {
-                Rb2.velocity = new Vector2(1.5f, Rb2.velocity.y);
+                Rb2.velocity = new Vector2(RightWalkSpeed, Rb2.velocity.y);
             }
 
         }
         else 
         {
-            Moving = false;
+            MovingRight = false;
         }
-        if (Moving == false)
-        {
-            Rb2.velocity = new Vector2(0.0f, Rb2.velocity.y);
-        }
+
 
 
         if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.LeftShift) && RunCD == false && FearState == false)
         {
             print("Running Left");
-            /*FindObjectOfType<RotateSurvivor>().Rotate180();*/
-            Moving = true;
-            Rb2.AddForce(new Vector3(LeftWalkSpeed, 0, 0));
-            if (Rb2.velocity.x < -3.0f)
+            MovingLeft = true;
+            Rb2.AddForce(new Vector2(-100, Rb2.velocity.y));
+            if (Rb2.velocity.x < LeftRunSpeed)
             {
-                Rb2.velocity = new Vector2(-3.0f, Rb2.velocity.y);
+                Rb2.velocity = new Vector2(LeftRunSpeed, Rb2.velocity.y);
             }
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            /*FindObjectOfType<RotateSurvivor>().Rotate180();*/
-            Moving = true;
-            Rb2.AddForce(new Vector3(LeftWalkSpeed, 0, 0));
-            if (Rb2.velocity.x < -1.5f)
+            MovingLeft = true;
+            Rb2.AddForce(new Vector2(-100, Rb2.velocity.y));
+            if (Rb2.velocity.x < LeftWalkSpeed)
             {
-                Rb2.velocity = new Vector2(-1.5f, Rb2.velocity.y);
+                Rb2.velocity = new Vector2(LeftWalkSpeed, Rb2.velocity.y);
             }
 
         }
         else
         {
-            Moving = false;
+            MovingLeft = false;
         }
-
+        
 
 
         if (OnFloor == false && Input.GetKeyDown(KeyCode.Space) && AirDashCD == false&& AirDashCD == false && Input.GetKey(KeyCode.D))
@@ -188,42 +202,15 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        /*if (OnFloor == true && Input.GetKey(KeyCode.C) && Rb2.velocity.x < -5)
+        if (MovingLeft == false)
         {
-            Sliding = true;
-            gameObject.transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y * 0.5f, transform.localScale.z);
-            Rb2.AddForce(new Vector3(-6, 0, 0));
 
-            if (false)
-            {
-                gameObject.transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y / 0.5f, transform.localScale.z);
-                Sliding = false;
-            }
-            else if (Rb2.velocity.x < -2)
-            {
-                gameObject.transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y / 0.5f, transform.localScale.z);
-                Sliding = false;
-            }
-
+            Rb2.velocity = new Vector2(0.0f, Rb2.velocity.y);
         }
-        if (OnFloor == true && Input.GetKey(KeyCode.C) && Rb2.velocity.x > 5)
+        if (MovingRight == false)
         {
-            Sliding = true;
-            gameObject.transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y * 0.5f, transform.localScale.z);
-            Rb2.AddForce(new Vector3(6, 0, 0));
-
-            if (false)
-            {
-                gameObject.transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y / 0.5f, transform.localScale.z);
-                Sliding = false;
-            }
-            else if (Rb2.velocity.x < 2)
-            {
-                gameObject.transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y / 0.5f, transform.localScale.z);
-                Sliding = false;
-            }
-        } */
-
+            Rb2.velocity = new Vector2(0.0f, Rb2.velocity.y);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
