@@ -12,8 +12,10 @@ public class TargetStone : MonoBehaviour
     public bool TargetingPlayer = false;
     public bool TargetingDistraction = false;
 
-    
+
     public float T;
+
+    [SerializeField]
     public float Speed;
     // Start is called before the first frame update
     void Start()

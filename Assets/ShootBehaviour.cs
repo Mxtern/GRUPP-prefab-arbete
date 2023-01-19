@@ -20,9 +20,7 @@ public class ShootBehaviour : MonoBehaviour
         cameras = FindObjectsOfType<Camera>();
         /*PlayerCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();*/
     }
-
-    // Update is called once per frame
-    void FixedUpdate()
+    public void SetCamera()
     {
         Vector3 temp = Input.mousePosition;
         temp.z = -10;
@@ -30,10 +28,22 @@ public class ShootBehaviour : MonoBehaviour
         {
             if (cam.gameObject.activeSelf == true)
             {
+                print(cam.name);
                 MousePos = cam.ScreenToWorldPoint(temp);
+                return;
             }
-           
+
         }
+        print("Cant find camera");
+        cameras = FindObjectsOfType<Camera>();
+        SetCamera();
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        SetCamera();
+       
 
         Vector3 AimRotation = MousePos - transform.position;
         float RotationZ = Mathf.Atan2(AimRotation.y, AimRotation.x) * Mathf.Rad2Deg;

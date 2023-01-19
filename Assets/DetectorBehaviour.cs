@@ -39,6 +39,10 @@ public class DetectorBehaviour : MonoBehaviour
             FindObjectOfType<TargetMove>().Distracted();
             FindObjectOfType<TargetStone>().HarvesterDistracted(collision.transform);
         }
+        else
+        {
+            print("Must've been the wind");
+        }
     }
 
 }

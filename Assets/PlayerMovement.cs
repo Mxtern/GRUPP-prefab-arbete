@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public bool Sliding;
     public bool FearState;
     public bool HasRock;
+    public bool Moving;
     
 
     public GameObject PlayerCamera;
@@ -48,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
         Boss.SetActive(false);
         BossOpening.SetActive(false);
         TargetManager.SetActive(false);
+        Moving = false;
         gameObject.tag = "Player";
         
     }
@@ -76,6 +78,21 @@ public class PlayerMovement : MonoBehaviour
             PlayerAniamtion.SetBool("IsWalking", false);
         }
 
+        if (Rb2.velocity.y == 0)
+        {
+            PlayerAniamtion.SetBool("IsJumping", false);
+            PlayerAniamtion.SetBool("IsFalling", false);
+        }
+        else if (Rb2.velocity.y > 0)
+        {
+            PlayerAniamtion.SetBool("IsJumping", true);
+            PlayerAniamtion.SetBool("IsFalling", false);
+        }
+        else if (Rb2.velocity.y < 0)
+        {
+            PlayerAniamtion.SetBool("IsJumping", false);
+            PlayerAniamtion.SetBool("IsFalling", true);
+        }
 
 
 
@@ -85,11 +102,16 @@ public class PlayerMovement : MonoBehaviour
             print("Jump");
             Rb2.AddForce(new Vector3(0, JumpForce, 0));
             OnFloor = false;
+            if (OnFloor == false)
+            {
+
+            }
         }
 
         if (Input.GetKey(KeyCode.D) && (Input.GetKey(KeyCode.LeftShift)) && RunCD == false && FearState == false)
         {
             print("Running Right");
+            Moving = true;
             
             Rb2.AddForce(new Vector3(RightWalkSpeed, 0, 0));
             if (Rb2.velocity.x > 3.0f)
@@ -99,7 +121,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            
+            Moving = true;
             Rb2.AddForce(new Vector3(RightWalkSpeed, 0, 0));
             if (Rb2.velocity.x > 1.5f)
             {
@@ -107,12 +129,21 @@ public class PlayerMovement : MonoBehaviour
             }
 
         }
+        else 
+        {
+            Moving = false;
+        }
+        if (Moving == false)
+        {
+            Rb2.velocity = new Vector2(0.0f, Rb2.velocity.y);
+        }
 
 
         if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.LeftShift) && RunCD == false && FearState == false)
         {
             print("Running Left");
-          /*FindObjectOfType<RotateSurvivor>().Rotate180();*/
+            /*FindObjectOfType<RotateSurvivor>().Rotate180();*/
+            Moving = true;
             Rb2.AddForce(new Vector3(LeftWalkSpeed, 0, 0));
             if (Rb2.velocity.x < -3.0f)
             {
@@ -121,14 +152,21 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.A))
         {
-          /*FindObjectOfType<RotateSurvivor>().Rotate180();*/
+            /*FindObjectOfType<RotateSurvivor>().Rotate180();*/
+            Moving = true;
             Rb2.AddForce(new Vector3(LeftWalkSpeed, 0, 0));
             if (Rb2.velocity.x < -1.5f)
             {
                 Rb2.velocity = new Vector2(-1.5f, Rb2.velocity.y);
             }
-            
+
         }
+        else
+        {
+            Moving = false;
+        }
+
+
 
         if (OnFloor == false && Input.GetKeyDown(KeyCode.Space) && AirDashCD == false&& AirDashCD == false && Input.GetKey(KeyCode.D))
         {
