@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class Mainmenu : MonoBehaviour
 {
+    public void Start()
+    {
+        
+    }
     public void Play()
     {
         SceneManager.LoadScene("World(no graphics)");
@@ -15,5 +19,6 @@ public class Mainmenu : MonoBehaviour
         Application.Quit();
         Debug.Log("player has exited the most epic game ever.");
     }
+
 
 }

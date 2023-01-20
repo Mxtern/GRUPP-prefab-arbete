@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 
@@ -28,8 +29,10 @@ public class PlayerMovement : MonoBehaviour
     public GameObject BossOpening;
     public GameObject TargetManager;
     public GameObject SneakArea;
-    
 
+    public int SwitchedScene = 1;
+
+    public GameObject FinishGame;
     public Animator PlayerAniamtion;
     [SerializeField]
     public float JumpForce = 340.0f;
@@ -283,6 +286,13 @@ public class PlayerMovement : MonoBehaviour
         {
             InSneakArea = true;
         }
+        if (collision.gameObject.tag == "FinishGame" && SwitchedScene == 1)
+        {
+            SceneManager.LoadScene("MainMenu");
+            SwitchedScene += 1;
+            
+        }
+
 
     }
     private void OnTriggerExit2D(Collider2D collision)
