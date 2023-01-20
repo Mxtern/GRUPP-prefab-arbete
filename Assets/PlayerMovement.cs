@@ -110,12 +110,12 @@ public class PlayerMovement : MonoBehaviour
             PlayerAniamtion.SetBool("IsJumping", false);
             PlayerAniamtion.SetBool("IsFalling", false);
         }
-        else if (Rb2.velocity.y > 0)
+        else if (Rb2.velocity.y > 1)
         {
             PlayerAniamtion.SetBool("IsJumping", true);
             PlayerAniamtion.SetBool("IsFalling", false);
         }
-        else if (Rb2.velocity.y < 0)
+        else if (Rb2.velocity.y < -1)
         {
             PlayerAniamtion.SetBool("IsJumping", false);
             PlayerAniamtion.SetBool("IsFalling", true);
