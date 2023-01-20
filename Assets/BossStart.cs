@@ -5,6 +5,8 @@ using UnityEngine;
 public class BossStart : MonoBehaviour
 {
     public GameObject BossOpening;
+    public GameObject SleepingHarvester;
+    public GameObject SneakArea;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,11 +26,13 @@ public class BossStart : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            print("You are filled with FEAR.");
+            print("As The Rubble Starts To Move, Your Veins Fills With Adrenaline.");
             BossOpening.SetActive(true);
             FindObjectOfType<EnemyBehaviour>().WaitAndStart();
             FindObjectOfType<PlayerMovement>().Fear();
-            
+            SneakArea.SetActive(true);
+            SleepingHarvester.SetActive(false);
+
         }
     }
     

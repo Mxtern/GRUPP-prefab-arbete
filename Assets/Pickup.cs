@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +18,7 @@ public class Pickup : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player" && Input.GetKeyDown(KeyCode.F))
+        if (collision.gameObject.tag == "Player" && Input.GetKeyDown(KeyCode.F) && FindObjectOfType<PlayerMovement>().HasRock == false) 
         {
             FindObjectOfType<PlayerMovement>().Rock();
             Destroy(this.gameObject);

@@ -17,15 +17,17 @@ public class PlayerMovement : MonoBehaviour
     public bool HasRock;
     public bool MovingRight;
     public bool MovingLeft;
+    public bool InSneakArea;
     
 
     public GameObject PlayerCamera;
-    public GameObject HouseCam;
     public GameObject EntranceCam;
-    public GameObject BossCam;
     public GameObject Boss;
+    public GameObject BossCam;
+    public GameObject BossCam2;
     public GameObject BossOpening;
     public GameObject TargetManager;
+    public GameObject SneakArea;
     
 
     public Animator PlayerAniamtion;
@@ -54,10 +56,11 @@ public class PlayerMovement : MonoBehaviour
     {
         
         Rb2 = GetComponent<Rigidbody2D>();
-        HouseCam.SetActive(false); //change later
+        SneakArea.SetActive(false);
         PlayerCamera.SetActive(true);
         EntranceCam.SetActive(false);
         BossCam.SetActive(false);
+        BossCam2.SetActive(false);
         Boss.SetActive(false);
         BossOpening.SetActive(false);
         TargetManager.SetActive(false);
@@ -70,7 +73,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        
+
+        print("I Need To Be Quiet..");
+        if (Rb2.velocity.x > 5.0 && FearState == true)
+        {
+            Detected();
+        }
 
         if (Rb2.velocity.x > 0)
         {
@@ -112,11 +120,19 @@ public class PlayerMovement : MonoBehaviour
             PlayerAniamtion.SetBool("IsJumping", false);
             PlayerAniamtion.SetBool("IsFalling", true);
         }
+        if (OnFloor == true)
+        {
+            PlayerAniamtion.SetBool("OnFloor", true);
+        }
+        else if (OnFloor == false)
+        {
+            PlayerAniamtion.SetBool("OnFloor", false);
+        }
 
 
 
 
-        if (Input.GetKeyDown(KeyCode.W) && OnFloor == true &&FearState == false)
+        if (Input.GetKeyDown(KeyCode.W) && OnFloor == true)
         {
             print("Jump");
             Rb2.AddForce(new Vector3(0, JumpForce, 0));
@@ -130,7 +146,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.D) && (Input.GetKey(KeyCode.LeftShift)) && RunCD == false && FearState == false)
         {
             print("Running Right");
-            MovingRight = true;
+            
             
             Rb2.AddForce(new Vector2(100.0f, Rb2.velocity.y));
             if (Rb2.velocity.x > RightRunSpeed)
@@ -158,7 +174,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.LeftShift) && RunCD == false && FearState == false)
         {
             print("Running Left");
-            MovingLeft = true;
+            
             Rb2.AddForce(new Vector2(-100, Rb2.velocity.y));
             if (Rb2.velocity.x < LeftRunSpeed)
             {
@@ -220,24 +236,20 @@ public class PlayerMovement : MonoBehaviour
             OnFloor = true;
             AirDashCD = false;
             RunCD = false;
+            if (PlayerAniamtion.GetBool("IsFalling") == true && collision.gameObject.tag == "Floor")
+            {
+                PlayerAniamtion.SetBool("IsLanding", true);
+                
+            }
+            else if (OnFloor == true && PlayerAniamtion.GetBool("OnFloor") == true)
+            {
+                PlayerAniamtion.SetBool("IsLanding", false);
+            }
+            
+
         }
 
         
-
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "HidingPlace")
-        {
-            gameObject.tag = "HidingPlayer";
-        }
-        if (collision.gameObject.tag == "StopHiding")
-        {
-            gameObject.tag = "Player";
-        }
-        
-        
-
 
     }
     public void Rock()
@@ -255,7 +267,30 @@ public class PlayerMovement : MonoBehaviour
         FindObjectOfType<TargetStone>().SwitchTargets();
         Destroy(this.gameObject, 3.0f);
 
-        
+
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "HidingPlace")
+        {
+            gameObject.tag = "HidingPlayer";
+        }
+        if (collision.gameObject.tag == "StopHiding")
+        {
+            gameObject.tag = "Player";
+        }
+        if (collision.gameObject.tag == "SneakArea")
+        {
+            InSneakArea = true;
+        }
+
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "SneakArea")
+        {
+            FearState = false;
+        }
     }
 
 }

@@ -14,6 +14,7 @@ TagManager:
   - CamSwitcher1
   - HidingPlayer
   - Ladder
+  - CamSwitcher3
   layers:
   - Default
   - TransparentFX
