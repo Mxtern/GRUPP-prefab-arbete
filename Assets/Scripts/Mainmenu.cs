@@ -7,13 +7,13 @@ public class Mainmenu : MonoBehaviour
 {
     public void Play()
     {
-        SceneManager.LoadScene("Ossian scen");
+        SceneManager.LoadScene("World(no graphics)");
     }
 
     public void Quit()
     {
         Application.Quit();
-        Debug.Log("playr has exited the most epic game ever.");
+        Debug.Log("player has exited the most epic game ever.");
     }
 
 }
