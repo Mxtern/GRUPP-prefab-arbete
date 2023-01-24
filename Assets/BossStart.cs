@@ -27,6 +27,7 @@ public class BossStart : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             print("As The Rubble Starts To Move, Your Veins Fills With Adrenaline.");
+            print("I Need To Be Quiet..");
             BossOpening.SetActive(true);
             FindObjectOfType<EnemyBehaviour>().WaitAndStart();
             FindObjectOfType<PlayerMovement>().Fear();

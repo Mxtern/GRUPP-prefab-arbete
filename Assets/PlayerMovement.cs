@@ -76,9 +76,13 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
 
-        print("I Need To Be Quiet..");
-        if (Rb2.velocity.x > 5.0 && FearState == true)
+        
+        if (Rb2.velocity.x > 5.0f || Rb2.velocity.x < -5.0f && FearState == true)
         {
             Detected();
         }
@@ -113,12 +117,12 @@ public class PlayerMovement : MonoBehaviour
             PlayerAniamtion.SetBool("IsJumping", false);
             PlayerAniamtion.SetBool("IsFalling", false);
         }
-        else if (Rb2.velocity.y > 1)
+        else if (Rb2.velocity.y > 1 && OnFloor == false)
         {
             PlayerAniamtion.SetBool("IsJumping", true);
             PlayerAniamtion.SetBool("IsFalling", false);
         }
-        else if (Rb2.velocity.y < -1)
+        else if (Rb2.velocity.y < -1&& OnFloor == false)
         {
             PlayerAniamtion.SetBool("IsJumping", false);
             PlayerAniamtion.SetBool("IsFalling", true);
@@ -248,7 +252,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 PlayerAniamtion.SetBool("IsLanding", false);
             }
-            
+            PlayerAniamtion.SetBool("IsFalling", false);
 
         }
 
@@ -268,7 +272,9 @@ public class PlayerMovement : MonoBehaviour
     {
         FindObjectOfType<TargetMove>().DisableTargetPicking();
         FindObjectOfType<TargetStone>().SwitchTargets();
+        FindObjectOfType<BossBehaviour>().RestartGame();
         Destroy(this.gameObject, 3.0f);
+        
 
 
     }
