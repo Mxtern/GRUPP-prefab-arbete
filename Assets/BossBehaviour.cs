@@ -7,17 +7,18 @@ public class BossBehaviour : MonoBehaviour
 {
     
 
-    public Transform FollowStones = null;
-    public Transform FollowPlayer = null;
+    public Transform FollowStones = null; //Hittar positionen av bossens Target.
+    public Transform FollowPlayer = null; //Hittar positionen av spelaren.
 
     public bool PlayerDeath;
 
     public float TimeUntilRespawn = 3.0f;
     public float TimeLeft;
+    Rigidbody2D Rb2;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Rb2.GetComponent<Rigidbody2D>();
         PlayerDeath = false;
 
     }
@@ -26,8 +27,8 @@ public class BossBehaviour : MonoBehaviour
     void Update()
     {
         
-        this.transform.LookAt(FollowStones);
-        transform.right = FollowStones.position - transform.position;
+        this.transform.LookAt(FollowStones); //Roterar bossens sikte så att den alltid kollar mot Targeten.
+        transform.right = FollowStones.position - transform.position; 
 
         if (PlayerDeath == true)
         {
@@ -49,5 +50,5 @@ public class BossBehaviour : MonoBehaviour
 
     }
 
-
+    //VScript
 }

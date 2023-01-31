@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
     public float RightRunSpeed = 5.0f;
 
     [SerializeField]
-    public float DashSpeed = 300.0f;
+    public float DashSpeed = 200.0f;
 
 
 
@@ -76,7 +76,17 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            FindObjectOfType<RotateSurvivor>().FlipPlayerLeft();
+            
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            FindObjectOfType<RotateSurvivor>().FlipPlayerRight();
+
+        }
+            if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
@@ -91,7 +101,8 @@ public class PlayerMovement : MonoBehaviour
         {
             PlayerAniamtion.SetBool("IsWalking", true);
             FindObjectOfType<RotateSurvivor>().FlipPlayerRight();
-            
+
+
         }
         else if (Rb2.velocity.x == 0)
         {
@@ -210,12 +221,14 @@ public class PlayerMovement : MonoBehaviour
             Rb2.AddForce(new Vector3(DashSpeed, 0, 0));
             AirDashCD = true;
             RunCD = true;
+            print("Dashed Right");
         }
         if (OnFloor == false && Input.GetKeyDown(KeyCode.Space) && AirDashCD == false && AirDashCD == false && Input.GetKey(KeyCode.A))
         {
-            Rb2.AddForce(new Vector3(-DashSpeed, 0, 0));
+            Rb2.AddForce(new Vector3(DashSpeed * 1.0f, 0, 0));
             AirDashCD = true;
             RunCD = true;
+            print("Dashed Left");
         }
 
         if (HasRock == true)
@@ -280,14 +293,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "HidingPlace")
-        {
-            gameObject.tag = "HidingPlayer";
-        }
-        if (collision.gameObject.tag == "StopHiding")
-        {
-            gameObject.tag = "Player";
-        }
+      
         if (collision.gameObject.tag == "SneakArea")
         {
             InSneakArea = true;
@@ -300,6 +306,17 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "HidingPlace")
+        {
+            gameObject.tag = "HidingPlayer";
+        }
+        else
+        {
+            gameObject.tag = "Player";
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

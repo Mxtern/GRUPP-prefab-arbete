@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossStart : MonoBehaviour
+public class BossStart : MonoBehaviour //Det här scriptet inleder boss fighten.
 {
-    public GameObject BossOpening;
+    public GameObject BossOpening; //Dåligt namn, men BossOpening är Bossens 
     public GameObject SleepingHarvester;
     public GameObject SneakArea;
     // Start is called before the first frame update
