@@ -13,6 +13,7 @@ TagManager:
   - Harvester
   - CamSwitcher1
   - HidingPlayer
+  - Ladder
   layers:
   - Default
   - TransparentFX

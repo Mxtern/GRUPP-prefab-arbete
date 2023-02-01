@@ -5,12 +5,23 @@ using UnityEngine;
 public class LadderMovement : MonoBehaviour
 {
     private float vertical; 
-    private float speed = 10f;
+
+    [SerializeField]
+    public float speed = 5.0f;
+
+    public bool PlayerOnGround;
     private bool isLadder;
     private bool isClimbing;
 
+    public Animator PlayerAnimation;
+
     [SerializeField] private Rigidbody2D rb; //ändra till spelarens rigid body och gör även en tag som heter "Ladder"
 
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        PlayerOnGround = FindObjectOfType<PlayerMovement>().OnFloor;
+    }
     void Update() 
     {
         vertical = Input.GetAxisRaw("Vertical"); // även här
@@ -25,7 +36,7 @@ public class LadderMovement : MonoBehaviour
     {
         if (isClimbing) // vete fan men skitbra
         {
-            rb.gravityScale = 0f;
+            rb.gravityScale = 0.0f;
             rb.velocity = new Vector2(rb.velocity.x, vertical * speed);
         }
         else
@@ -36,9 +47,15 @@ public class LadderMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Ladder")) // om tagen är "ladder" är ladder sant
+        if (collision.CompareTag("Ladder") && Input.GetKey(KeyCode.W))// om tagen är "ladder" är ladder sant
         {
             isLadder = true;
+            PlayerAnimation.SetBool("IsClimbing", true);
+        }
+        if (collision.CompareTag("Ladder") && Input.GetKey(KeyCode.W) && PlayerOnGround == true)
+        {
+            isLadder = true;
+            PlayerAnimation.SetBool("IsClimbing", true);
         }
     }
 
@@ -48,6 +65,12 @@ public class LadderMovement : MonoBehaviour
         {
             isLadder = false;
             isClimbing = false;
+            PlayerAnimation.SetBool("IsClimbing", false);
+            
+        }
+        if (collision.CompareTag("Ladder") && rb.velocity.y > 0.0f)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, 3.0f);
         }
     }
 } // inte mitt script fuck you

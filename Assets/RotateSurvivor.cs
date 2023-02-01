@@ -4,19 +4,26 @@ using UnityEngine;
 
 public class RotateSurvivor : MonoBehaviour
 {
+    public SpriteRenderer PlayerSprite;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        PlayerSprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-    /*blic void Rotate180()
+    public void FlipPlayerLeft()
     {
-        transform.localScale = new Vector3(0, 180, 0);
-    }*/
+        PlayerSprite.flipX = true;
+    }
+    public void FlipPlayerRight()
+    {
+        PlayerSprite.flipX = false;
+    }
+
 }
