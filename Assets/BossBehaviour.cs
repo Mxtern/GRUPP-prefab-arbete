@@ -12,7 +12,7 @@ public class BossBehaviour : MonoBehaviour
 
     public bool PlayerDeath;
 
-    public float TimeUntilRespawn = 3.0f;
+    public float TimeUntilRespawn = 5.0f;
     public float TimeLeft;
     Rigidbody2D Rb2;
     // Start is called before the first frame update

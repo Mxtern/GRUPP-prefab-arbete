@@ -16,6 +16,7 @@ TagManager:
   - Ladder
   - CamSwitcher3
   - FinishGame
+  - SneakArea
   layers:
   - Default
   - TransparentFX
