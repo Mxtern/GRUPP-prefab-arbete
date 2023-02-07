@@ -16,8 +16,12 @@ TagManager:
   - Ladder
   - CamSwitcher3
   - FinishGame
+<<<<<<< HEAD
   - checkpoint
   - falldetector
+=======
+  - SneakArea
+>>>>>>> 8c99943edf250cec0e9bb08c81352ca64f9d9259
   layers:
   - Default
   - TransparentFX
