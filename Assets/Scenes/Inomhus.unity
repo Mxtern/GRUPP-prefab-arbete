@@ -206,7 +206,7 @@ MonoBehaviour:
   HasRock: 0
   MovingRight: 0
   MovingLeft: 0
-  InSneakArea: 0
+  CanRun: 0
   PlayerCamera: {fileID: 0}
   EntranceCam: {fileID: 0}
   Boss: {fileID: 0}
@@ -219,10 +219,10 @@ MonoBehaviour:
   FinishGame: {fileID: 0}
   PlayerAniamtion: {fileID: 1897023579}
   JumpForce: 340
-  LeftWalkSpeed: -40
-  RightWalkSpeed: 40
-  LeftRunSpeed: -50
-  RightRunSpeed: 50
+  LeftWalkSpeed: -1
+  RightWalkSpeed: 1
+  LeftRunSpeed: -3
+  RightRunSpeed: 3
   DashSpeed: 200
 --- !u!50 &166154575
 Rigidbody2D:
@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 300588945}
   m_Layer: 0
   m_Name: golv
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
