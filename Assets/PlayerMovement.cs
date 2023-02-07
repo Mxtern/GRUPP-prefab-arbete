@@ -39,16 +39,16 @@ public class PlayerMovement : MonoBehaviour
     public float JumpForce = 340.0f;
 
     [SerializeField]
-    public float LeftWalkSpeed = -2.0f;
+    public float LeftWalkSpeed = -1.0f;
 
     [SerializeField]
-    public float RightWalkSpeed = 2.0f;
+    public float RightWalkSpeed = 1.0f;
 
     [SerializeField]
-    public float LeftRunSpeed = -5.0f;
+    public float LeftRunSpeed = -3.0f;
 
     [SerializeField]
-    public float RightRunSpeed = 5.0f;
+    public float RightRunSpeed = 3.0f;
 
     [SerializeField]
     public float DashSpeed = 200.0f;
