@@ -6,6 +6,8 @@ public class Camera2Behaviour : MonoBehaviour
 {
     public GameObject EntranceCam;
     public GameObject BossCam;
+
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -28,4 +30,5 @@ public class Camera2Behaviour : MonoBehaviour
 
         }
     }
+    
 }
