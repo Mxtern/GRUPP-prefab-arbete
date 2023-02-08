@@ -18,6 +18,7 @@ TagManager:
   - Ladder
   - HidingPlayer
   - BossCamBorder
+  tags: []
   layers:
   - Default
   - TransparentFX
