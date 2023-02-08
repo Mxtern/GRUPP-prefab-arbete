@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossStart : MonoBehaviour //Det här scriptet inleder boss fighten.
+public class BossStart : MonoBehaviour
 {
-    public GameObject BossOpening; //Dåligt namn, men BossOpening är Bossens 
-    public GameObject SleepingHarvester;
-    public GameObject SneakArea;
+    public GameObject BossOpening;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,13 +24,11 @@ public class BossStart : MonoBehaviour //Det här scriptet inleder boss fighten.
     {
         if (collision.gameObject.tag == "Player")
         {
-            print("As The Rubble Starts To Move, Your Veins Fills With Adrenaline.");
+            print("You are filled with FEAR.");
             BossOpening.SetActive(true);
             FindObjectOfType<EnemyBehaviour>().WaitAndStart();
             FindObjectOfType<PlayerMovement>().Fear();
-            SneakArea.SetActive(true);
-            SleepingHarvester.SetActive(false);
-
+            
         }
     }
     

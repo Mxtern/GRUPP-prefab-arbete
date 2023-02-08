@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class LadderMovement : MonoBehaviour
 {
-    
     private float vertical; 
 
     [SerializeField]
@@ -17,8 +16,6 @@ public class LadderMovement : MonoBehaviour
     public Animator PlayerAnimation;
 
     [SerializeField] private Rigidbody2D rb; //ändra till spelarens rigid body och gör även en tag som heter "Ladder"
-
-    
 
     private void Start()
     {
@@ -46,18 +43,8 @@ public class LadderMovement : MonoBehaviour
         {
             rb.gravityScale = 1.5f;
         }
-
-        
-
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Floor")
-        {
-            PlayerOnGround = true;
 
-        }
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Ladder") && Input.GetKey(KeyCode.W))// om tagen är "ladder" är ladder sant

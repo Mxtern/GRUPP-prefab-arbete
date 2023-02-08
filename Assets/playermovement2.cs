@@ -14,15 +14,15 @@ public class playermovement2 : MonoBehaviour
     public float JumpForce = 100;
 
 
-    private Vector3 respawnPoint;// vart man ska spawna - MaxT
-    public GameObject fallDetector; //vilket objekt som är falldetectorn - MaxT
+    private Vector3 respawnPoint;
+    public GameObject fallDetector;
 
     // Start is called before the first frame update
     void Start()
     {
         Rb2 = GetComponent<Rigidbody2D>();
 
-        respawnPoint = transform.position; // Positionen på respawn
+        respawnPoint = transform.position;
     }
 
     // Update is called once per frame
@@ -68,21 +68,18 @@ public class playermovement2 : MonoBehaviour
             RunCD = true;
 
 
-            
+            fallDetector.transform.position = new Vector2(transform.position.x, fallDetector.transform.position.y);
         }
-        
-
-
     }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "falldetector") // Om man ramlar på falldetectorn så kommer man tillbaka till respawnpointen - MaxT
+        if (collision.tag == "falldetector")
         {
             transform.position = respawnPoint;
         }
-        else if (collision.tag == "checkpoint") // Om du rör checkpoint / objektet som har taggen checkpoint så spawnar man där istället när man ramlar - Max T
+        else if (collision.tag == "checkpoint")
         {
             respawnPoint = transform.position;
  

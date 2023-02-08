@@ -4,31 +4,27 @@ using UnityEngine;
 
 public class door : MonoBehaviour
 {
-    // bool för om player är detectad eller inte
     private bool playerDetected;
-    //dörrens position
     public Transform doorPos;
-    //dörrens position
     public float widht;
     public float height;
-    //Vilket layer dörren ska detecta player i 
     public LayerMask whatIsPlayer;
     
     [SerializeField]
-    private string sceneName;// vilken scene spelet ska switcha till
+    private string sceneName;
 
     SceenSwitch sceneSwitch;
 
     private void Start()
     {
-        sceneSwitch = FindObjectOfType<SceenSwitch>(); //så du kan switcha scenes
+        sceneSwitch = FindObjectOfType<SceenSwitch>();
     }
 
     private void Update()
     {
-        playerDetected = Physics2D.OverlapBox(doorPos.position, new Vector2(widht, height), 0, whatIsPlayer); //detectar om player är framför gizmon/dörren
+        playerDetected = Physics2D.OverlapBox(doorPos.position, new Vector2(widht, height), 0, whatIsPlayer);
 
-        if (playerDetected == true) //om du trycker E så ändrar spelet scene/öpnar dörren
+        if (playerDetected == true)
         {
             if (Input.GetKey(KeyCode.E))
             {
@@ -39,9 +35,9 @@ public class door : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.blue; //Färgen på gizmosens outline
-        Gizmos.DrawWireCube(doorPos.position, new Vector3(widht, height, 1));// positionen på dörren
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(doorPos.position, new Vector3(widht, height, 1));
     }
-    
+
 }
 

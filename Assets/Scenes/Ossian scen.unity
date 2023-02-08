@@ -167,16 +167,16 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 3
+  m_Intensity: 4
   m_Range: 100
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 1
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 0.59
+    m_Strength: 1
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -516,7 +516,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 758042874}
   m_LocalRotation: {x: -0, y: -0, z: -0.3474426, w: 0.9377013}
-  m_LocalPosition: {x: 0.78314245, y: 0.43597612, z: 0.1}
+  m_LocalPosition: {x: 0.78314245, y: 0.43597612, z: 0}
   m_LocalScale: {x: 0.2220249, y: 0.68121266, z: 0.80736315}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -602,12 +602,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1128900742}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.07, y: 0.44, z: 0}
-  m_LocalScale: {x: 0.41094795, y: 0.03526504, z: 0.03526504}
+  m_LocalPosition: {x: 16.37, y: -3.56, z: 0}
+  m_LocalScale: {x: 0.5090001, y: 0.04367928, z: 0.04367928}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1393365027}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1128900746
 MonoBehaviour:
@@ -814,12 +814,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1393365024}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.88, y: -3.56, z: 0}
+  m_LocalPosition: {x: 16.37, y: -3.56, z: 0}
   m_LocalScale: {x: 1.2386, y: 1.2386, z: 1.2386}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 758042876}
-  - {fileID: 1128900745}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -885,21 +884,7 @@ MonoBehaviour:
   OnFloor: 0
   AirDashCD: 0
   RunCD: 0
-  Sliding: 0
-  FearState: 0
-  HasRock: 0
-  Moving: 0
-  PlayerCamera: {fileID: 0}
-  EntranceCam: {fileID: 0}
-  BossCam: {fileID: 0}
-  Boss: {fileID: 0}
-  BossOpening: {fileID: 0}
-  TargetManager: {fileID: 0}
-  PlayerAniamtion: {fileID: 0}
   JumpForce: 340
-  LeftWalkSpeed: -6
-  RightWalkSpeed: 6
-  DashSpeed: 300
 --- !u!114 &1393365031
 MonoBehaviour:
   m_ObjectHideFlags: 0

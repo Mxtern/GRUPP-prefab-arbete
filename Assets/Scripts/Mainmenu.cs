@@ -5,20 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class Mainmenu : MonoBehaviour
 {
-    public void Start()
-    {
-        
-    }
     public void Play()
     {
-        SceneManager.LoadScene("World(no graphics)");
+        SceneManager.LoadScene("Ossian scen");
     }
 
     public void Quit()
     {
         Application.Quit();
-        Debug.Log("player has exited the most epic game ever.");
+        Debug.Log("playr has exited the most epic game ever.");
     }
-
 
 }
