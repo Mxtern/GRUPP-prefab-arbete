@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemyBehaviour : MonoBehaviour
 {
     public GameObject Boss;
-    public GameObject BossOpening;
     public GameObject TargetManager;
 
     [SerializeField]
@@ -45,7 +44,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void BossSequenceStart()
     {
-        Destroy(BossOpening.gameObject);
+        
         FindObjectOfType<BossStart>().DestroyIntro();
         TargetManager.SetActive(true);
         BossCountdown = (false);
