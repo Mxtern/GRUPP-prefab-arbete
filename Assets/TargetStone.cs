@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class TargetStone : MonoBehaviour
 {
     public Transform TargetTarget = null;
@@ -53,6 +53,7 @@ public class TargetStone : MonoBehaviour
     {
         TargetingTarget = false;
         TargetingPlayer = true;
+        
     }
     public void HarvesterDistracted(Transform rock)
     {
