@@ -2,33 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Camera2Behaviour : MonoBehaviour
+public class Dialogue : MonoBehaviour
 {
-    public GameObject EntranceCam;
-    public GameObject BossCam;
+    bool Player;
+    bool newsPaper;
+    bool newsPaperDialogue;
 
-    
+    bool isActiveAndEnabled;
     // Start is called before the first frame update
     void Start()
     {
-        
+       
+    
     }
 
     // Update is called once per frame
     void Update()
     {
         
+
     }
+
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag=="newsPaper")
         {
-            print("You Feel As If Someone Is Watching Over You..");
-            EntranceCam.SetActive(false);
-            BossCam.SetActive(true);
-
-
+            newsPaperDialogue = isActiveAndEnabled = true;
         }
     }
-    
+
 }

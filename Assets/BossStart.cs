@@ -7,20 +7,31 @@ public class BossStart : MonoBehaviour //Det här scriptet inleder boss fighten.
     public GameObject BossOpening; //Dåligt namn, men BossOpening är Bossens 
     public GameObject SleepingHarvester;
     public GameObject SneakArea;
+
+    public bool ConstantShakeScreen;
     // Start is called before the first frame update
     void Start()
     {
-        
+        ConstantShakeScreen = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (ConstantShakeScreen == true)
+        {
+            FindObjectOfType<BossCamShake>().ScreenShaking();
+        }
     }
     public void DestroyIntro()
     {
-        Destroy(this.gameObject);
+        ConstantShakeScreen = false;
+        if (ConstantShakeScreen == false)
+        {
+            FindObjectOfType<BossCamShake>().ScreenReset();
+            Destroy(this.gameObject);
+        }
+        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -32,6 +43,7 @@ public class BossStart : MonoBehaviour //Det här scriptet inleder boss fighten.
             FindObjectOfType<PlayerMovement>().Fear();
             SneakArea.SetActive(true);
             SleepingHarvester.SetActive(false);
+            ConstantShakeScreen = true;
 
         }
     }
