@@ -27,7 +27,7 @@ public class Camera2Behaviour : MonoBehaviour
             EntranceCam.SetActive(false);
             BossCam.SetActive(true);
 
-
+            //När spelaren nuddar "CamSwitcher2" objektet så byts kameran från EntranceCam till BossCam.
         }
     }
     

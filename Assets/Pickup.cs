@@ -23,5 +23,9 @@ public class Pickup : MonoBehaviour
             FindObjectOfType<PlayerMovement>().Rock();
             Destroy(this.gameObject);
         }
+
+        //Picks up rock when player is touching the rock and presses F.
     }
+
+    //Victor's script.
 }

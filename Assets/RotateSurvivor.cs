@@ -20,10 +20,15 @@ public class RotateSurvivor : MonoBehaviour
     public void FlipPlayerLeft()
     {
         PlayerSprite.flipX = true;
+
+        //Flippar spelar spriten så att den kollar åt vänster.
     }
     public void FlipPlayerRight()
     {
         PlayerSprite.flipX = false;
+
+        //Flippar spelar spriten så att den kollar åt höger.
     }
 
+    //Victor's script.
 }
