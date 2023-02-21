@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class playermovement2 : MonoBehaviour
-{//Max T
+{
     Rigidbody2D Rb2;
 
     public bool OnFloor;

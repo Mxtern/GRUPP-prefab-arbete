@@ -22,11 +22,5 @@ public class RockThrow : MonoBehaviour
     {
         GameObject Rock = Instantiate(RockPrefab, transform.position, transform.rotation) as GameObject;
         Rock.transform.position = Player.transform.position;
-
-        print("rock go brr");
-
-        //SpawnRock scriptet instantiatar en sten prefab på sten siktarens position.
     }
-
-    //Victor's script.
 }

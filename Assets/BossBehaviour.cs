@@ -27,7 +27,7 @@ public class BossBehaviour : MonoBehaviour
     void Update()
     {
         
-        this.transform.LookAt(FollowStones); 
+        this.transform.LookAt(FollowStones); //Roterar bossens sikte så att den alltid kollar mot Targeten.
         transform.right = FollowStones.position - transform.position; 
 
         if (PlayerDeath == true)
@@ -42,15 +42,13 @@ public class BossBehaviour : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
 
-            //Roterar bossens sikte så att den alltid kollar mot Targeten.
         }
     }
     public void RestartGame()
     {
         PlayerDeath = true;
 
-        //En funktion som aktiverar PlayerDeath boolen.
     }
 
-    //Victor's script.
+    //VScript
 }

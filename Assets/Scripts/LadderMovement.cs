@@ -4,32 +4,32 @@ using UnityEngine;
 
 public class LadderMovement : MonoBehaviour
 {
-    //Ossian
+    
     private float vertical; 
 
     [SerializeField]
     public float speed = 5.0f;
 
-    public bool PlayerOnGround; // är spelaren på marken?
-    private bool isLadder; // är objektet en stege?
-    private bool isClimbing; //Klättrar spelaren
+    public bool PlayerOnGround;
+    private bool isLadder;
+    private bool isClimbing;
 
     public Animator PlayerAnimation;
 
-    [SerializeField] private Rigidbody2D rb; //bestämmer vad rigidbody(spelaren) är
+    [SerializeField] private Rigidbody2D rb; //ändra till spelarens rigid body och gör även en tag som heter "Ladder"
 
     
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>(); 
-        PlayerOnGround = FindObjectOfType<PlayerMovement>().OnFloor;//hittar playermovement och att den är på golvet
+        rb = GetComponent<Rigidbody2D>();
+        PlayerOnGround = FindObjectOfType<PlayerMovement>().OnFloor;
     }
     void Update() 
     {
-        vertical = Input.GetAxisRaw("Vertical"); //vertical=vertical
+        vertical = Input.GetAxisRaw("Vertical"); // även här
 
-        if (isLadder && Mathf.Abs(vertical) > 0f)//Om det är en ladder och vertical är större en 0 så klättrar man
+        if (isLadder && Mathf.Abs(vertical) > 0f) // lika bra här
         {
             isClimbing = true;
         }
@@ -37,7 +37,7 @@ public class LadderMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isClimbing)  // om man klättrar  blir gravity0 och man åker upp annars är gravity scale 1.5.
+        if (isClimbing) // vete fan men skitbra
         {
             rb.gravityScale = 0.0f;
             rb.velocity = new Vector2(rb.velocity.x, vertical * speed);
@@ -52,7 +52,7 @@ public class LadderMovement : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Floor")  //om spelaren träffar marken är man på marken.
+        if (collision.gameObject.tag == "Floor")
         {
             PlayerOnGround = true;
 
@@ -60,7 +60,7 @@ public class LadderMovement : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Ladder") && Input.GetKey(KeyCode.W)) // om det är en ladder och man trycker på W så startar klättrings animationen
+        if (collision.CompareTag("Ladder") && Input.GetKey(KeyCode.W))// om tagen är "ladder" är ladder sant
         {
             isLadder = true;
             PlayerAnimation.SetBool("IsClimbing", true);
@@ -74,16 +74,16 @@ public class LadderMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Ladder")) // när man går ut från laddern slutar man klättra
+        if (collision.CompareTag("Ladder"))// bra jobbat här
         {
             isLadder = false;
             isClimbing = false;
             PlayerAnimation.SetBool("IsClimbing", false);
             
         }
-        if (collision.CompareTag("Ladder") && rb.velocity.y > 0.0f) //om taggen är ladder och man åker snabbare än 0 så blir velocityn 3
+        if (collision.CompareTag("Ladder") && rb.velocity.y > 0.0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, 3.0f);
         }
     }
-} 
+} // inte mitt script fuck you

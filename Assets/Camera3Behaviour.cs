@@ -26,11 +26,6 @@ public class Camera3Behaviour : MonoBehaviour
             FindObjectOfType<TargetMove>().TargetUp = true;
             FindObjectOfType<TargetMove>().TargetLow = false;
 
-            //När spelaren rör "CamSwitcher3" objektet så byts kamrean från BossCam till BossCam2 vilket ger ett högre perspektiv av Boss Arenan.
-            //Bossen börjar sikta in sig på target stenarna i den övre delen och slutar sikta in sig på stenarna i den undre delen av boss arenan
-
         }
     }
-
-    //Victor's script.
 }

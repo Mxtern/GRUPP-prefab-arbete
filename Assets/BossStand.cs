@@ -21,8 +21,6 @@ public class BossStand : MonoBehaviour //Scriptet gör så att Bossens gameObject 
     {
         Vector3 a = transform.position; //Sätter Vector3 "a" som det här objektet (bossens) position.
         Vector3 b = StandLerp.position; //Sätter Vector3 "b" som lerp (objektet som bossen ska röra sig mot) objektets position. 
-        transform.position = Vector3.MoveTowards(a, Vector3.Lerp(a, b, T), Speed); //Flyttar boss spriten upp i en jämn hastighet medans den visuellt ställer sig up. Detta gör att bossen ser mer realistisk och mindre stel ut när den ställer sig up.
+        transform.position = Vector3.MoveTowards(a, Vector3.Lerp(a, b, T), Speed);
     }
-
-    //Victor's script.
 }

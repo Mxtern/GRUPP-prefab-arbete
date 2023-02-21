@@ -15,8 +15,6 @@ public class RockBehaviour : MonoBehaviour
         
         Rb2 = GetComponent<Rigidbody2D>();
         Rb2.AddForce(transform.right * 500);
-
-        //När stenen instantiatas genom SpawnRock funktionen i RockThrow scriptet så flyger den fram i musens riktning. 
     }
 
     // Update is called once per frame
@@ -30,9 +28,6 @@ public class RockBehaviour : MonoBehaviour
         {
             Destroy(this.gameObject, 4.15f);
         }
-
-        //När stenen nuddar marken så förstörs den efter 4.15 sekunder.
     }
     
-    //Victor's script.
 }

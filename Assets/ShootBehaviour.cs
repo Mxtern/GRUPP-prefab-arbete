@@ -33,13 +33,10 @@ public class ShootBehaviour : MonoBehaviour
                 return;
             }
 
-            //Kollar vilken kamera som är aktiverad. 
         }
         print("Cant find camera");
         cameras = FindObjectsOfType<Camera>();
         SetCamera();
-
-        //Letar efter kameror. 
     }
 
     // Update is called once per frame
@@ -48,18 +45,15 @@ public class ShootBehaviour : MonoBehaviour
         SetCamera();
        
 
-        Vector3 AimRotation = MousePos - transform.position; //riktningen från mus till spelare
-        float RotationZ = Mathf.Atan2(AimRotation.y, AimRotation.x) * Mathf.Rad2Deg; //rotation i radiner omvandlat till grader
-        transform.rotation = Quaternion.Euler(0, 0, RotationZ); //shooter aimern får samma rotation som räknats ut.
-
-        
+        Vector3 AimRotation = MousePos - transform.position;
+        float RotationZ = Mathf.Atan2(AimRotation.y, AimRotation.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, RotationZ);
 
         if (ThrewRock == true)
         {
             CreateRock(RotationZ);
             ThrewRock = false;
 
-            //Om man kastar en sten skapas en sten i en rotation som pekar mot musen.
         }
 
     }
@@ -69,19 +63,14 @@ public class ShootBehaviour : MonoBehaviour
         {
             ThrewRock = true;
             FindObjectOfType<PlayerMovement>().HasRock = false;
-
-            //Kastar du en sten så kan du inte kasta en till då du inte längre har den. Du kan kasta en till om du tar upp en annan sten.
         }
         
     }
     void CreateRock(float RotationZ)
     {
         GameObject Rock = Instantiate(RockPrefab) as GameObject;
-        Rock.transform.position = Player.transform.position; //Sätter stenens position detsamma som spelarens.
-        Rock.transform.rotation = Quaternion.Euler(0.0f, 0.0f, RotationZ); //Ger stenen samma rotation som tidigare räknats ut.
-
-        
+        Rock.transform.position = Player.transform.position;
+        Rock.transform.rotation = Quaternion.Euler(0.0f, 0.0f, RotationZ);
     }
 
-    //Victor's script.
 }
