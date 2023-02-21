@@ -42,7 +42,7 @@ public class Pickup : MonoBehaviour
             PickupAvalible = true;
             PickupText.transform.position = StonePos;
             
-
+            //Om spelaren står vid en sten så visas en pickup icon som indikerar att man kan trycka på F för att ta up stenen.
         }
         
 
@@ -53,6 +53,8 @@ public class Pickup : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             PickupAvalible = false;
+
+            //Tar bort pickup iconen om man inte längre står vid stenen.
         }
     }
 
