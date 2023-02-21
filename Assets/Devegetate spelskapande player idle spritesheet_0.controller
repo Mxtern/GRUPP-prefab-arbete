@@ -95,21 +95,17 @@ AnimatorStateMachine:
     m_Position: {x: 200, y: 30, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7282339467308308056}
-    m_Position: {x: 200, y: 100, z: 0}
+    m_Position: {x: 200, y: 110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6585019221876987772}
     m_Position: {x: 200, y: -40, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 9168069400815924365}
 <<<<<<< HEAD
-<<<<<<< HEAD
     m_Position: {x: 570, y: -40, z: 0}
 =======
     m_Position: {x: 460, y: -20, z: 0}
 >>>>>>> a6c2cf5bcfd170590723039372a4c7d70acffca9
-=======
-    m_Position: {x: 450, y: -40, z: 0}
->>>>>>> parent of 0a038d7 (uh)
   - serializedVersion: 1
     m_State: {fileID: 4914302451033055498}
     m_Position: {x: 450, y: 100, z: 0}
