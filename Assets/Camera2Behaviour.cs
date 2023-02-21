@@ -6,8 +6,6 @@ public class Camera2Behaviour : MonoBehaviour
 {
     public GameObject EntranceCam;
     public GameObject BossCam;
-
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -30,5 +28,4 @@ public class Camera2Behaviour : MonoBehaviour
             //När spelaren nuddar "CamSwitcher2" objektet så byts kameran från EntranceCam till BossCam.
         }
     }
-    
 }
