@@ -3,25 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Floor
-  - StopHiding
-  - HidingPlace
-  - CamSwitcher2
-  - CamSwitcher3
-  - SneakArea
-  - CamSwitcher1
-  - Harvester
-  - FinishGame
-  - EnemyOpening
-  - StonePrefab
-  - Ladder
-  - HidingPlayer
-<<<<<<< HEAD
-=======
-  - BossCamBorder
   tags: []
->>>>>>> a6c2cf5bcfd170590723039372a4c7d70acffca9
   layers:
   - Default
   - TransparentFX
