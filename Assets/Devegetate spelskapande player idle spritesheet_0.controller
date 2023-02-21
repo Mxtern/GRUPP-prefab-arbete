@@ -103,10 +103,14 @@ AnimatorStateMachine:
     m_State: {fileID: 9168069400815924365}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_Position: {x: 570, y: -40, z: 0}
 =======
     m_Position: {x: 460, y: -20, z: 0}
 >>>>>>> a6c2cf5bcfd170590723039372a4c7d70acffca9
+=======
+    m_Position: {x: 450, y: -40, z: 0}
+>>>>>>> parent of 0a038d7 (uh)
 =======
     m_Position: {x: 450, y: -40, z: 0}
 >>>>>>> parent of 0a038d7 (uh)
