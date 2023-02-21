@@ -30,7 +30,10 @@ public class EnemyBehaviour : MonoBehaviour
             {
                 BossSequenceStart();
             }
+
+            //Startar en nedräkning som efter 5 sekunder  startar själva boss fighten.
         }
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -40,6 +43,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         BossCountdown = true;
         
+        //Sätter BossCountdown till true. 
     }
 
     public void BossSequenceStart()
@@ -49,5 +53,10 @@ public class EnemyBehaviour : MonoBehaviour
         TargetManager.SetActive(true);
         BossCountdown = (false);
         Boss.SetActive(true);
+
+        //Funktionen avslutar boss openingen och startar sjävla boss fighten.
     }
+
+    //Victor's script
 }
+

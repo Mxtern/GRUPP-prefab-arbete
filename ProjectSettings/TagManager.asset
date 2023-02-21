@@ -17,6 +17,11 @@ TagManager:
   - StonePrefab
   - Ladder
   - HidingPlayer
+<<<<<<< HEAD
+=======
+  - BossCamBorder
+  tags: []
+>>>>>>> a6c2cf5bcfd170590723039372a4c7d70acffca9
   layers:
   - Default
   - TransparentFX

@@ -42,6 +42,8 @@ public class TargetMove : MonoBehaviour
         {
             PickLowerTarget();
             TimeLeft += TimeUntilSwitch;
+
+            //TimeLeft är lika med 4.2 sekunder som minskar med verklig tid hela tiden. Om 4.2 sekunder har gått och om bossen siktar på den lägre delen av boss arenan så byter bossen sitt target i den undre arenan och TimeLeft får tillbaka sin ursprungliga tid.
         }
         else if (TimeLeft <= 0.0f && DistractionActive == true) 
         {
@@ -49,11 +51,14 @@ public class TargetMove : MonoBehaviour
             DistractionActive = false;
             Targeting = true;
 
+            //Om tiden har runnit ut och bossen är distraherad så siktar bossen in sig på stenen.
         }
         if (TimeLeft <= 0.0f && Targeting == true && TargetUp)
         {
             PickUpperTarget();
             TimeLeft += TimeUntilSwitch;
+
+            //Om TimeLeft tiden rinner ut och bossen siktar in sig på den övre arenan så väljer den ett nytt target i den övre arenan och TimeLeft tiden resetas till 4.2.
         }
         else if (TimeLeft <= 0.0f && DistractionActive == true)
         {
@@ -61,12 +66,14 @@ public class TargetMove : MonoBehaviour
             DistractionActive = false;
             Targeting = true;
 
+            //Om tiden runnit ut och bossen är distraherad så siktar bossen in sig på stenen.
         }
     }
     public void DisableTargetPicking()
     {
         Targeting = false;
         
+        //Stänger av targeting.
     }
     public void Distracted()
     {
@@ -74,6 +81,7 @@ public class TargetMove : MonoBehaviour
         DistractionActive = true;
         TimeLeft = 4.2f;
 
+        //Stänger av targeting och sätter DistractionActive till true. TimeLeft sätts tillbaka till 4.2. Detta gör så att bossen blir distraherad i 4.2 sekunder.
     }
     public void PickLowerTarget()
     {
@@ -100,6 +108,8 @@ public class TargetMove : MonoBehaviour
         {
             transform.position = TargetStone4.position;
         }
+
+        //Väljer en random sten att sikta in sig på. Om som väljs är detsamma som den förra så väljs stenen om.
     }
     public void PickUpperTarget()
     {
@@ -127,5 +137,8 @@ public class TargetMove : MonoBehaviour
             transform.position = TargetStone8.position;
         }
 
+        //Samma sak som PickLowerTarget fast med de övre targetserna.
     }
+
+    //Victor's script.
 }

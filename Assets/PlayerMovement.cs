@@ -192,7 +192,7 @@ public class PlayerMovement : MonoBehaviour
                 Rb2.velocity = new Vector2(RightRunSpeed, Rb2.velocity.y);
             }
 
-            //Fungerar ej??? Ska göra så att karaktären kan springa om man håller in shift när man går.
+            //Håller du in Shift och D samtidigt, dvs om du håller in shift medan du går åt höger så springer du åt höger.
         }
         else if (Input.GetKey(KeyCode.D))
         {
@@ -227,7 +227,7 @@ public class PlayerMovement : MonoBehaviour
                 Rb2.velocity = new Vector2(LeftRunSpeed, Rb2.velocity.y);
             }
 
-            //Fungerar ej också, men koden ska göra så att du kan springa åt vänster.
+            //Samma sak som hur man springer åt höger, fast nu åt vänster. Håller du in A och shift samtidigt så springer du åt vänster.
         }
         else if (Input.GetKey(KeyCode.A))
         {
@@ -310,6 +310,10 @@ public class PlayerMovement : MonoBehaviour
             PlayerAniamtion.SetBool("IsFalling", false);
 
         }
+        else
+        {
+            OnFloor = false;
+        }
 
         //När spelaren är på/nuddar marken så sätts boolen OnFloor till true samt AriDashCd och RunCD till false. 
         //OnFloor indikerar om och när du nuddar marken. Om du faller och sedan nuddar marken så spelas Landing animationen.
@@ -391,5 +395,5 @@ public class PlayerMovement : MonoBehaviour
         
     }
     
-
+    //Victor's script.
 }
