@@ -52,7 +52,7 @@ public class LadderMovement : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Floor") 
+        if (collision.gameObject.tag == "Floor")  //om spelaren träffar marken är man på marken.
         {
             PlayerOnGround = true;
 
@@ -60,7 +60,7 @@ public class LadderMovement : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Ladder") && Input.GetKey(KeyCode.W))
+        if (collision.CompareTag("Ladder") && Input.GetKey(KeyCode.W)) // om det är en ladder och man trycker på W så startar klättrings animationen
         {
             isLadder = true;
             PlayerAnimation.SetBool("IsClimbing", true);
@@ -74,14 +74,14 @@ public class LadderMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Ladder"))
+        if (collision.CompareTag("Ladder")) // när man går ut från laddern slutar man klättra
         {
             isLadder = false;
             isClimbing = false;
             PlayerAnimation.SetBool("IsClimbing", false);
             
         }
-        if (collision.CompareTag("Ladder") && rb.velocity.y > 0.0f)
+        if (collision.CompareTag("Ladder") && rb.velocity.y > 0.0f) //om taggen är ladder och man åker snabbare än 0 så blir velocityn 3
         {
             rb.velocity = new Vector2(rb.velocity.x, 3.0f);
         }
