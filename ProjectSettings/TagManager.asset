@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 2
 <<<<<<< HEAD
-<<<<<<< HEAD
   tags:
   - Floor
   - StopHiding
@@ -24,9 +23,6 @@ TagManager:
   - BossCamBorder
   tags: []
 >>>>>>> a6c2cf5bcfd170590723039372a4c7d70acffca9
-=======
-  tags: []
->>>>>>> parent of 0a038d7 (uh)
 =======
   tags: []
 >>>>>>> parent of 0a038d7 (uh)
