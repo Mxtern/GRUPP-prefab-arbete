@@ -7,12 +7,6 @@ public class BossStart : MonoBehaviour //Det här scriptet inleder boss fighten.
     public GameObject BossOpening; //Dåligt namn, men BossOpening är Bossens 
     public GameObject SleepingHarvester;
     public GameObject SneakArea;
-<<<<<<< HEAD
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-=======
 
     public GameObject FearMessage;
     public bool ConstantShakeScreen;
@@ -21,22 +15,11 @@ public class BossStart : MonoBehaviour //Det här scriptet inleder boss fighten.
     {
         ConstantShakeScreen = false;
         FearMessage.SetActive(false);
-<<<<<<< Updated upstream
-=======
->>>>>>> d90f69c06657799a0df4549f17f8d8a8ebdf2d69
->>>>>>> Stashed changes
     }
 
     // Update is called once per frame
     void Update()
     {
-<<<<<<< HEAD
-        
-    }
-    public void DestroyIntro()
-    {
-        Destroy(this.gameObject);
-=======
         if (ConstantShakeScreen == true)
         {
             FindObjectOfType<BossCamShake>().ScreenShaking();
@@ -54,10 +37,6 @@ public class BossStart : MonoBehaviour //Det här scriptet inleder boss fighten.
         }
         
         //Funktionen stänger av ConstantShakeScreen vilket stänger av skärm skakningen, om ConstantScreenShake sedan är av så ändras boss kamerans position till dess ursprungliga position och objektet som startar boss fighten förstörs.
-<<<<<<< Updated upstream
-=======
->>>>>>> d90f69c06657799a0df4549f17f8d8a8ebdf2d69
->>>>>>> Stashed changes
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -70,6 +49,7 @@ public class BossStart : MonoBehaviour //Det här scriptet inleder boss fighten.
             FindObjectOfType<PlayerMovement>().Fear();
             SneakArea.SetActive(true);
             SleepingHarvester.SetActive(false);
+            ConstantShakeScreen = true;
 
             //Om spelaren rör objektet som startar boss fighten så aktiveras BossOpening vilket startas bossens animationer. Först ställer sig bossen up och sedan hamnar den i en loop av bossens idle animation.
             //Samdigit kallas skript från EnemyBehaviour och PlayerMovement som sätter spelaren i ett "FearState" läge som gör så att den ej kan springa eller dasha. Dessutom Aktiveras en timer som sätter på och stänger av boss opening och sjävla boss fighten.
