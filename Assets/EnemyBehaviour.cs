@@ -57,6 +57,6 @@ public class EnemyBehaviour : MonoBehaviour
         //Funktionen avslutar boss openingen och startar sjävla boss fighten.
     }
 
-    //Victor's script
+    //Victor's script.
 }
 
